@@ -1,13 +1,20 @@
 #!/bin/bash
 #set -x
-//TODO: Makup: https://github.com/lra/mackup
+//TODO: Mackup: https://github.com/lra/mackup
 
-gpg_key="56F783EF1D171748"
-git_dir="${HOME}/git"
-git_config_name="Sean McCabe"
-git_email="sean@ulation.com"
-github_user="SeanLeftBelow"
-github_org=    # Leave Empty to Skip.
+# Read in git configurations
+echo -n "Enter base git directory: "
+read git_dir
+echo -n "Enter Git Configuration name: "
+read git_config_name
+echo -n "Enter git email: "
+read git_email
+echo -n "Enter github username: "
+read github_user
+echo -n "Enter github org (leave empty to skip): "
+read github_org
+
+echo "git directory is $git_dir, git user info is $git_config_name $git_email $github_user $github_org"
 
 # Brew Setup
 printf "Installing xcode"
@@ -134,18 +141,5 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
-
-# Transmission Configs
-# Use `~/Downloads/Incomplete` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
-# Don't prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
 
 printf "Done!"
